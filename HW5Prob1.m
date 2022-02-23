@@ -54,6 +54,8 @@ if(1)
     quiver(GPS_x/1e3,GPS_y/1e3,GPS_UE-mean(GPS_UE),GPS_UN-mean(GPS_UN),'k')
     axis image
     axis([-3.5e2 3e2 -2.5e2 2e2])
+    xlabel('Easting (km)')
+    ylabel('Northing (km)')
 end    
 
 
@@ -65,9 +67,9 @@ end
 %essentially up-down on your plot (i.e., vectors on one side point up, on
 %the other side they point down).
 %%% CHANGE THIS
-theta =15;
+theta = 10; %in degrees
 
-%This is the matrix multiplication to rotate the coordinates of coastlines, faults, etc.
+%This is a 2x2 matrix to rotate the coordinates of coastlines, faults, etc.
 rotM = [cosd(theta) sind(theta); -sind(theta) cosd(theta)];
 
 %Now rotate all the things we've been plotting
@@ -125,8 +127,7 @@ end
 %%%CHANGE THESE to actual numbers, they are set to a default max/min in your rotated coords.
 min_roty = min(rotGPS_y);
 max_roty = max(rotGPS_y);
-min_roty = -5e5;
-max_roty = -2e5;   
+  
 goodid = find(rotGPS_y < max_roty & rotGPS_y > min_roty);
 
 if(0)
